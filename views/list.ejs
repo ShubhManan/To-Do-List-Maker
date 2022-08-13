@@ -1,0 +1,26 @@
+<%- include("header") -%>
+    <div class="box" id="heading">
+        <h1> <%=listTitle%> </h1>
+    </div>
+    <div class="box"> 
+        <% for(var i=0;i<newListItems.length;i++) {%>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" value="<%= newListItems[i]._id %>" onchange="this.form.submit()" name ="checkbox">
+                    <p><%= newListItems[i].name %></p>
+                </div>
+                <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+            </form>
+            <%}%>
+            <form class="item" action="/" method="post">
+        
+                <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+                <button type="submit" name="list" name ="button" value="<%= listTitle %>">+</button>
+            </form>
+        </div>
+        <form action="/download" method="post" style="text-align:center;">
+            <button id="downloadButton" style="color: #00204a; background-color: rgb(199, 209, 222);  border-radius:5px; width: auto;" type="submit" name="list" name ="button" value="<%= listTitle %>">
+                    Download List
+            </button>
+        </form>
+    <%- include("footer") -%>
